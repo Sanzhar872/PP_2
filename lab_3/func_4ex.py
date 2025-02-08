@@ -89,10 +89,9 @@ def imdvpoint(movies, name):
 
 name = []
 while True:
-
-  name1 = input("name movie:")
-   if name1 == 'done':
+    name1 = input("name movie:")
+    if name1 == 'done':
         break
-    name.append(name1)
+        name.append(name1)
 
 print(imdvpoint(movies, name))
