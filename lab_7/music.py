@@ -17,8 +17,9 @@ screen = pygame.display.set_mode((800, 800))
 pygame.display.set_caption("песня-1")
 clock = pygame.time.Clock()
 
-background = pygame.image.load(
-    os.path.join("music-elements", "background.png"))
+background = pygame.image.load(os.path.join(
+    "lab_7", "music-elements", "background.png"))
+
 
 bg = pygame.Surface((500, 200))
 bg.fill((255, 255, 255))
