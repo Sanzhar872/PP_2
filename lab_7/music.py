@@ -28,10 +28,10 @@ bg.fill((255, 255, 255))
 font2 = pygame.font.SysFont(None, 20)
 
 
-playb = pygame.image.load(os.path.join("music-elements", "play.png"))
-pausb = pygame.image.load(os.path.join("music-elements", "pause.png"))
-nextb = pygame.image.load(os.path.join("music-elements", "next.png"))
-prevb = pygame.image.load(os.path.join("music-elements", "back.png"))
+playb = pygame.image.load(os.path.join("lab_7", "music-elements", "play.png"))
+pausb = pygame.image.load(os.path.join("lab_7", "music-elements", "pause.png"))
+nextb = pygame.image.load(os.path.join("lab_7", "music-elements", "next.png"))
+prevb = pygame.image.load(os.path.join("lab_7", "music-elements", "back.png"))
 
 index = 0
 aplay = False
