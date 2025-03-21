@@ -5,7 +5,7 @@ pygame.init()
 
 playlist = []
 
-music_folder = "мой/путь/к/музыке"
+music_folder = r"C:\Users\Asus\Desktop\python\PP_2\lab_7\musics"
 allmusic = os.listdir(music_folder)
 
 
