@@ -87,7 +87,7 @@ class Player(pygame.sprite.Sprite):
 class Coin(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.radius = random.randint(5, 10)  # разные радиусы монет
+        self.radius = random.randint(10, 20)  # разные радиусы монет
         self.image = pygame.Surface(
             (self.radius * 2, self.radius * 2), pygame.SRCALPHA)  # создаем поверхность ширина = радиус * 2, высота = радиус * 2
         pygame.draw.circle(
@@ -95,6 +95,12 @@ class Coin(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()  # оборачиваем монету в рект
         # даем рандомную координату
         self.rect.center = (random.randint(40, SCREEN_WIDTH-40), 0)
+
+        # Определяем количество очков в зависимости от радиуса монеты
+        if self.radius <= 10:  # Маленькая монета
+            self.points = 1
+        else:  # Большая монета
+            self.points = 2
 
     def move(self):
         # монета падает вниз с фиксированной скоросью
@@ -166,7 +172,7 @@ while True:
 
     # проверяем на столкновения между двумя спрайтами (P1, coins) есди да то удаляем монету
     for coin in pygame.sprite.spritecollide(P1, coins, True):
-        COINS_COLLECTED += 1
+        COINS_COLLECTED += coin.points
         new_coin = Coin()
         coins.add(new_coin)
         all_sprites.add(new_coin)
