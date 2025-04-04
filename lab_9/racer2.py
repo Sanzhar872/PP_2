@@ -24,7 +24,7 @@ GOLD = (255, 215, 0)
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 600
 SPEED = 5
-SCORE = 0
+SCORE = 1
 COINS_COLLECTED = 0
 COIN_THRESHOLD = 5  # Number of coins needed to increase speed
 COIN_FALL_SPEED = 3  # Slower falling speed for coins
@@ -54,7 +54,7 @@ class Enemy(pygame.sprite.Sprite):
             40, SCREEN_WIDTH-40), 0)  # координаты Врага
 
     def move(self):
-        global SCORE
+        global SCORE, SPEED
         # это метод Pygame, который перемещает объект (по Х не двигается а по Y speed)
         self.rect.move_ip(0, SPEED)
         if self.rect.top > 600:  # это Y-координата если он больше 600 значит враг уже скрылся
@@ -80,7 +80,7 @@ class Player(pygame.sprite.Sprite):
                 self.rect.move_ip(-5, 0)
         if self.rect.right < SCREEN_WIDTH:  # проверяем что он не уехал за правую границу
             if pressed_keys[K_RIGHT]:
-                # сдвигаем игрока на 5 пикселей на лева
+                # сдвигаем игрока на 5 пикселей на право
                 self.rect.move_ip(5, 0)
 
 
@@ -97,7 +97,7 @@ class Coin(pygame.sprite.Sprite):
         self.rect.center = (random.randint(40, SCREEN_WIDTH-40), 0)
 
         # Определяем количество очков в зависимости от радиуса монеты
-        if self.radius <= 10:  # Маленькая монета
+        if self.radius <= 15:  # Маленькая монета
             self.points = 1
         else:  # Большая монета
             self.points = 2
@@ -117,8 +117,8 @@ E1 = Enemy()
 coins = pygame.sprite.Group()
 
 # Создаем пару монет
-for _ in range(3):
-    coins.add(Coin())
+for _ in range(1):
+    coins.add(Coin())  # проигрываем цикл N раз, _ пустая переменная
 
 # Содаем группу спрайтов
 # Содаем группу спрайтов enemises можно проверять на сталкивание с игроком
@@ -129,16 +129,10 @@ all_sprites.add(P1)
 all_sprites.add(E1)
 all_sprites.add(*coins)  # добавляем все объекты из Coins по отдельности
 
-# Adding a new User event
-INC_SPEED = pygame.USEREVENT + 1  # пользовательские события.
-# Настраиваем таймер, чтобы событие срабатывало каждые 1000 мс
-pygame.time.set_timer(INC_SPEED, 1000)
 
 # Game Loop
 while True:
     for event in pygame.event.get():
-        if event.type == INC_SPEED:  # проверяем сработало ли на наше событие которые обнавляеться каждую секнуду
-            SPEED += 0.5  # если да то увеличиваем скорость нашего enemy
         if event.type == QUIT:
             pygame.quit()
             sys.exit()

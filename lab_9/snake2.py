@@ -24,19 +24,21 @@ score = 0
 
 clock = pygame.time.Clock()
 
-
+# дикшинори
 food_types = [
     {"color": "red", "score": 1, "lifetime": 10000},
     {"color": "blue", "score": 2, "lifetime": 15000},
     {"color": "gold", "score": 5, "lifetime": 5000}
 ]
 
+# функция для генераций позиций еды и его веса
+
 
 def generate_food():
     while True:
         pos = [random.randrange(
             0, x, cell_size), random.randrange(0, x, cell_size)]
-        if pos not in snake_body:
+        if pos not in snake_body:  # размещаем еду если он не в теле змейки
             food_type = random.choice(food_types)
             return {
                 "pos": pos,
@@ -102,6 +104,7 @@ while running:
     if snake_pos in snake_body[1:]:
         running = False
 
+    #
     if pygame.time.get_ticks() - food["spawn_time"] > food["lifetime"]:
         food = generate_food()
 
